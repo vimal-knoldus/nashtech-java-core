@@ -27,8 +27,8 @@ jobs:
         java-version: '19'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
-      run: mvn clean install
+    - name: Build with Publish Maven
+      run: mvn clean deploy -P sonar --file pom.xml
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
