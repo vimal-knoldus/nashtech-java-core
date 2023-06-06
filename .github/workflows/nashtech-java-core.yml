@@ -28,7 +28,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Publish Maven
-      run: mvn clean deploy -P sonar --file pom.xml
+      run: mvn clean install
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
