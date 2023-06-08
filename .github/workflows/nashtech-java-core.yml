@@ -27,4 +27,11 @@ jobs:
       run: mvn clean install
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Trigger next workflow
+      if: success()
+      run: |
+          curl -X POST https://api.github.com/repos/dev-swapnildixit4161/nashtech-java-core-examplers/actions/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u ${{ secrets.GITHUB_TOKEN }} \
+          --data '{"event_type": "trigger-from-nashtech-java-core", "client_payload": {"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}}'
 
